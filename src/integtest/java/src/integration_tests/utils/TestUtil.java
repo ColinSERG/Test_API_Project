@@ -16,8 +16,8 @@ import org.junit.Assert;
 
 public class TestUtil {
 
-	public static void waitForAPI(URL url) {
-		for (int retries = 1; retries < 3; retries++) {
+	public static void waitForAPIUp(URL url) {
+		for (int retries = 1; retries < 4; retries++) {
 
 			outputInfoMessages("Attempt " + retries + " to connect to " + url.toString());
 			try {
@@ -46,6 +46,32 @@ public class TestUtil {
 		Assert.fail("Failed to make a successful connection to endpoint " + url.toString());
 
 	}
+	
+	public static void waitForAPIDown(URL url) {
+		for (int retries = 1; retries < 4; retries++) {
+			outputInfoMessages("Waiting for api to stop url - " + url.toString());
+			try {
+				HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+				conn.setRequestMethod("GET");
+				conn.getContent();
+				try {
+					TimeUnit.SECONDS.sleep(1);
+					outputInfoMessages("Waiting 1 second before retry.");
+				} catch (InterruptedException e) {
+					outputInfoMessages("Error thorwn when waiting 1 second before retry.");
+				}
+			}catch (IOException e) {
+				if(e.getMessage().contains("Connection refused")) {
+					outputInfoMessages(url.toString()+ " is now stopped.");
+					return;
+				}
+			}
+		}
+		Assert.fail("Failed wait for api to stop " + url.toString());
+
+	}
+	
+	
 
 	public static void outputInfoMessages(String text) {
 		System.out.println("INFO:- " + text);

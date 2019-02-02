@@ -1,6 +1,7 @@
 package src.integration_tests;
 
 import java.io.IOException;
+import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.HashMap;
 
@@ -29,7 +30,7 @@ public class TestGETCarAPI extends TestUtil {
 	public static void beforeClass() throws IOException, InterruptedException {
 		Main.main(null);
 		URL url = new URL(address);
-		waitForAPI(url);
+		waitForAPIUp(url);
 		
 		
 		url = new URL(address + "/car");
@@ -37,14 +38,14 @@ public class TestGETCarAPI extends TestUtil {
 		requestProp.put("Content-Type", "application/json");
 		
 		
-		String data = "{'reg':'QAX6253','model':'Clio','year':2001,'make':'Renault'}";
+		String data = "{'reg':'BAX6253','model':'Clio','year':2001,'make':'Renault'}";
 		outputInfoMessages("Populating 1st car " + data);
 		ResponseDTO resp = request("POST", url, requestProp, data);
 		Assert.assertEquals("Verify correct response message.", "\"Car has been added.\"", resp.getBody());
 		Assert.assertEquals("Verify correct response code.", 200, resp.getStatus());
 		
 		
-		data = "{'reg':'TFZ3564','model':'Impreza','year':2018,'make':'Subaru'}";
+		data = "{'reg':'EFZ3564','model':'Impreza','year':2018,'make':'Subaru'}";
 		outputInfoMessages("Populating 2nd car " + data);
 		ResponseDTO resp2 = request("POST", url, requestProp, data);
 		Assert.assertEquals("Verify correct response message.", "\"Car has been added.\"", resp2.getBody());
@@ -69,7 +70,7 @@ public class TestGETCarAPI extends TestUtil {
 		Assert.assertNotEquals("Verify the regs are different", array0.getAsJsonObject().get("reg").getAsString(),array1.getAsJsonObject().get("reg").getAsString());
 	
 		for(JsonElement value:array) {
-			if(value.getAsJsonObject().get("reg").getAsString().equals("TFZ3564")) {
+			if(value.getAsJsonObject().get("reg").getAsString().equals("EFZ3564")) {
 				
 				String make = value.getAsJsonObject().get("make").getAsString();
 				String model = value.getAsJsonObject().get("model").getAsString();
@@ -83,7 +84,7 @@ public class TestGETCarAPI extends TestUtil {
 				String make = value.getAsJsonObject().get("make").getAsString();
 				String model = value.getAsJsonObject().get("model").getAsString();
 				int year = value.getAsJsonObject().get("year").getAsInt();
-				Assert.assertEquals("Verify correct reg.", "QAX6253", reg);
+				Assert.assertEquals("Verify correct reg.", "BAX6253", reg);
 				Assert.assertEquals("Verify correct make.", "Renault", make);
 				Assert.assertEquals("Verify correct model.", "Clio", model);
 				Assert.assertEquals("Verify correct year.", 2001, year);
@@ -96,7 +97,7 @@ public class TestGETCarAPI extends TestUtil {
 	public void retrieveSpecificCar() throws IOException {
 		
 		outputInfoMessages("Start Test - " + name.getMethodName());
-		URL url = new URL(address + "/car/TFZ3564");
+		URL url = new URL(address + "/car/EFZ3564");
 		ResponseDTO resp = request("GET", url, new HashMap<String, String>(), "");
 		Assert.assertEquals("Verify correct response code.", 200, resp.getStatus());
 		JsonParser parser = new JsonParser();
@@ -105,7 +106,7 @@ public class TestGETCarAPI extends TestUtil {
 		String make = jsonTree.getAsJsonObject().get("make").getAsString();
 		String model = jsonTree.getAsJsonObject().get("model").getAsString();
 		int year = jsonTree.getAsJsonObject().get("year").getAsInt();
-		Assert.assertEquals("Verify correct reg.", "TFZ3564", reg);
+		Assert.assertEquals("Verify correct reg.", "EFZ3564", reg);
 		Assert.assertEquals("Verify correct make.", "Subaru", make);
 		Assert.assertEquals("Verify correct model.", "Impreza", model);
 		Assert.assertEquals("Verify correct year.", 2018, year);
@@ -113,7 +114,9 @@ public class TestGETCarAPI extends TestUtil {
 	}
 	
 	@AfterClass
-	public static void afterClass() {
+	public static void afterClass() throws MalformedURLException {
 		Spark.stop();
+		URL url = new URL(address);
+		waitForAPIDown(url);
 	}
 }
