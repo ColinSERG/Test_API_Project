@@ -47,6 +47,8 @@ dependencies {
     integTestRuntime configurations.runtime
     integTestRuntime configurations.testRuntime
     
+    compile group: 'io.jenkins.plugins', name: 'warnings-ng', version: '2.1.2'
+    
 }
 
 task integTest(type: Test) {
