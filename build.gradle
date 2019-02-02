@@ -42,9 +42,10 @@ sourceSets {
 }
 
 test {
-    useJUnit {
-    	includeCategories 'src.integration_tests'
-    }
+
+	include '**integration_tests/*'
+	testLogging.showStandardStreams = true
+
     testLogging {
         // Show that tests are run in the command-line output
         events 'started', 'passed'
