@@ -53,6 +53,10 @@ dependencies {
     
 }
 
+task test(type: Test) {
+
+}
+
 task integTest(type: Test) {
     group = LifecycleBasePlugin.VERIFICATION_GROUP
     description = 'Runs the integration tests.' 
