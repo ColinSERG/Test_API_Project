@@ -33,6 +33,20 @@ dependencies {
     compile 'com.sparkjava:spark-core:2.8.0'
 }
 
-test {
+sourceSets {
+    test {
+        java {
+            srcDirs = ['src/test/scala']
+        }
+    }
 }
 
+test {
+    useJUnit {
+    	includeCategories 'src.integration_tests'
+    }
+    testLogging {
+        // Show that tests are run in the command-line output
+        events 'started', 'passed'
+    }
+}   
