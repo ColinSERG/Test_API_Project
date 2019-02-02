@@ -34,9 +34,5 @@ dependencies {
 }
 
 test {
-    filter {
-        //include all integration tests
-        includeTestsMatching "*integration_tests*"
-    }
 }
 
