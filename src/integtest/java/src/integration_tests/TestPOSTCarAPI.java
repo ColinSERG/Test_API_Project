@@ -25,17 +25,17 @@ public class TestPOSTCarAPI extends TestUtil {
 	@BeforeClass
 	public static void beforeClass() throws IOException, InterruptedException {
 		Main.main(null);
-		URL url = new URL(address);
-		waitForAPI(url);
 	}
 
 	@Test
 	public void postMissingParameters() throws MalformedURLException {
 
+		URL url = new URL(address);
+		waitForAPI(url);
 		String data = "{'model':'Clio','year':2001,'make':'Renault'}";
 		ResponseDTO resp;
 		outputInfoMessages("Start Test - " + name.getMethodName());
-		URL url = new URL(address + "/car");
+		url = new URL(address + "/car");
 
 		HashMap<String, String> requestProp = new HashMap<String, String>();
 		requestProp.put("Content-Type", "application/json");
@@ -50,10 +50,12 @@ public class TestPOSTCarAPI extends TestUtil {
 	@Test
 	public void postInvalidYear() throws MalformedURLException {
 		
+		URL url = new URL(address);
+		waitForAPI(url);
 		String data = "{'reg':'QAX 6253','model':'Clio','year':2qwe001,'make':'Renault'}";
 		ResponseDTO resp;
 		outputInfoMessages("Start Test - " + name.getMethodName());
-		URL url = new URL(address + "/car");
+		url = new URL(address + "/car");
 		HashMap<String, String> requestProp = new HashMap<String, String>();
 		requestProp.put("Content-Type", "application/json");
 
@@ -65,10 +67,13 @@ public class TestPOSTCarAPI extends TestUtil {
 
 	@Test
 	public void postValidData() throws MalformedURLException {
+		
+		URL url = new URL(address);
+		waitForAPI(url);
 		String data = "{'reg':'QAX 6253','model':'Clio','year':2001,'make':'Renault'}";
 		ResponseDTO resp;
 		outputInfoMessages("Start Test - " + name.getMethodName());
-		URL url = new URL(address + "/car");
+		url = new URL(address + "/car");
 		HashMap<String, String> requestProp = new HashMap<String, String>();
 		requestProp.put("Content-Type", "application/json");
 
