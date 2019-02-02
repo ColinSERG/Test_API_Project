@@ -22,6 +22,9 @@ sourceSets {
     integTest {
         java.srcDir 'src/integtest/java'
     }
+    test {
+        java.srcDir 'src/test/java'
+    }
 }
 
 dependencies {
