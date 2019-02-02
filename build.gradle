@@ -33,3 +33,11 @@ dependencies {
     compile 'com.sparkjava:spark-core:2.8.0'
 }
 
+sourceSets {
+    test {
+        java {
+            srcDirs = ["src/integration_tests"]
+        }
+    }
+}
+
