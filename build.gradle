@@ -15,9 +15,6 @@ repositories {
     // Use jcenter for resolving your dependencies.
     // You can declare any Maven/Ivy/file repository here.
     jcenter()
-    maven {
-        url "https://mvnrepository.com/artifact/io.jenkins.plugins/warnings-ng"
-    }
 }
 
 
@@ -50,8 +47,6 @@ dependencies {
     
     integTestRuntime configurations.runtime
     integTestRuntime configurations.testRuntime
-    
-    compile group: 'io.jenkins.plugins', name: 'warnings-ng', version: '2.1.2'
     
 }
 
