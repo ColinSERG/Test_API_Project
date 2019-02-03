@@ -80,7 +80,7 @@ task integtest(type: Test) {
 check.dependsOn integtest
 
 findbugs {
-  ignoreFailures = true
+  ignoreFailures = false
   toolVersion = "3.0.1"
   sourceSets = [sourceSets.main]
   reportsDir = file("$project.buildDir/reports/findbugs")
@@ -88,7 +88,7 @@ findbugs {
 }
 
 pmd {
-  ignoreFailures = true
+  ignoreFailures = false
   toolVersion = '4.3'
   sourceSets = [sourceSets.main]
   reportsDir = file("$project.buildDir/reports/pmd")
