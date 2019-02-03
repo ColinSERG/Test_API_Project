@@ -45,7 +45,6 @@ dependencies {
     
     integtestCompile sourceSets.main.output
     integtestCompile sourceSets.test.output
-    integtestCompile sourceSets.integtest.output
     
     integtestCompile configurations.compile
     integtestCompile configurations.testCompile
