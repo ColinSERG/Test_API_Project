@@ -43,14 +43,14 @@ dependencies {
     compile 'com.google.code.gson:gson:2.8.5'
     compile 'com.sparkjava:spark-core:2.8.0'
     
-    integTestCompile sourceSets.main.output
-    integTestCompile sourceSets.test.output
+    //integTestCompile sourceSets.main.output
+    //integTestCompile sourceSets.test.output
     
-    integTestCompile configurations.compile
-    integTestCompile configurations.testCompile
+    //integTestCompile configurations.compile
+    //integTestCompile configurations.testCompile
     
-    integTestRuntime configurations.runtime
-    integTestRuntime configurations.testRuntime
+    //integTestRuntime configurations.runtime
+    //integTestRuntime configurations.testRuntime
     
 }
 
