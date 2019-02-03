@@ -22,7 +22,7 @@ sourceSets {
 	test {
         java.srcDir 'src/test/java'
     }
-    integTest {
+    integtest {
         java.srcDir 'src/integtest/java'
     }
     
@@ -43,27 +43,28 @@ dependencies {
     compile 'com.google.code.gson:gson:2.8.5'
     compile 'com.sparkjava:spark-core:2.8.0'
     
-    //integTestCompile sourceSets.main.output
-    //integTestCompile sourceSets.test.output
+    integtestCompile sourceSets.main.output
+    integtestCompile sourceSets.test.output
+    integtestCompile sourceSets.integtest.output
     
-    //integTestCompile configurations.compile
-    //integTestCompile configurations.testCompile
+    integtestCompile configurations.compile
+    integtestCompile configurations.testCompile
     
-    //integTestRuntime configurations.runtime
-    //integTestRuntime configurations.testRuntime
+    integtestRuntime configurations.runtime
+    integtestRuntime configurations.testRuntime
     
 }
 
-task integTest(type: Test) {
+task integtest(type: Test) {
     group = LifecycleBasePlugin.VERIFICATION_GROUP
     description = 'Runs the integration tests.' 
 
     maxHeapSize = '1024m' 
 
-    testClassesDir = sourceSets.integTest.output.classesDir
-    classpath = sourceSets.integTest.runtimeClasspath 
+    testClassesDir = sourceSets.integtest.output.classesDir
+    classpath = sourceSets.integtest.runtimeClasspath 
 
-    binResultsDir = file("$buildDir/integration-test-results/binary/integTest")
+    binResultsDir = file("$buildDir/integration-test-results/binary/integtest")
 
     reports { 
         html.destination = "$buildDir/reports/integration-test"
@@ -73,4 +74,4 @@ task integTest(type: Test) {
     mustRunAfter tasks.test 
 }
 
-check.dependsOn integTest
+check.dependsOn integtest
