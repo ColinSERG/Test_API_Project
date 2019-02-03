@@ -6,4 +6,8 @@ public class ParseInt {
 		return Integer.parseInt(num);
 	}
 
+	//Added to throw error during static analysis
+	public void errorMethod() {
+		parseInt(null);
+	}
 }

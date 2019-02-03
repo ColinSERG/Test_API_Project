@@ -13,8 +13,6 @@ public class Main {
 		CarsDTO carsDto = new CarsDTO();
 		JsonUtil jsonUtil = new JsonUtil();
 		ParseInt parseInt = new ParseInt();
-		//Used to show static analysis error
-		int unusedVariable;
 
 		get("/", (req, res) -> {
 			res.status(200);

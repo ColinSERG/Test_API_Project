@@ -83,6 +83,7 @@ findbugs {
   ignoreFailures = true
   reportLevel = "low"
   toolVersion = "3.0.1"
+  sourceSets = [sourceSets.main]
   reportsDir = file("$project.buildDir/reports/findbugs")
   effort = "max"
 }

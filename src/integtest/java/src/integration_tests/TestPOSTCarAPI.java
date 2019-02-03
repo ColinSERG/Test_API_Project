@@ -24,7 +24,7 @@ public class TestPOSTCarAPI extends TestUtil {
 
 	@BeforeClass
 	public static void beforeClass() throws IOException, InterruptedException {
-		Main.main(null);
+		Main.main(new String[0]);
 		URL url = new URL(address);
 		waitForAPIUp(url);
 	}
