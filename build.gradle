@@ -10,7 +10,6 @@
 apply plugin: 'java-library'
 apply plugin: 'java'
 apply plugin: "findbugs"
-apply plugin: "pmd"
 
 // In this section you declare where to find the dependencies of your project
 repositories {
@@ -84,14 +83,4 @@ findbugs {
   sourceSets = [sourceSets.main]
   reportsDir = file("$project.buildDir/reports/findbugs")
   effort = "max"
-}
-
-pmd {
-  ignoreFailures = true
-  sourceSets = [sourceSets.main]
-  reportsDir = file("$project.buildDir/reports/pmd")
-  ruleSets = [
-    "basic",
-    "braces"
-  ]
 }
