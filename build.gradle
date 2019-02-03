@@ -81,7 +81,7 @@ check.dependsOn integtest
 
 findbugs {
   ignoreFailures = true
-  reportLevel = low
+  reportLevel = "low"
   showProgress = true
   toolVersion = "3.0.1"
   reportsDir = file("$project.buildDir/reports/findbugs")
