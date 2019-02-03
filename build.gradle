@@ -19,12 +19,14 @@ repositories {
 
 
 sourceSets {
+	test {
+        java.srcDir 'src/test/java'
+    }
+    /*
     integTest {
         java.srcDir 'src/integtest/java'
     }
-    test {
-        java.srcDir 'src/test/java'
-    }
+    */
 }
 
 dependencies {
@@ -41,7 +43,7 @@ dependencies {
     
     compile 'com.google.code.gson:gson:2.8.5'
     compile 'com.sparkjava:spark-core:2.8.0'
-    
+    /*
     integTestCompile sourceSets.main.output
     integTestCompile sourceSets.test.output
     
@@ -50,9 +52,9 @@ dependencies {
     
     integTestRuntime configurations.runtime
     integTestRuntime configurations.testRuntime
-    
+    */
 }
-
+/*
 task integTest(type: Test) {
     group = LifecycleBasePlugin.VERIFICATION_GROUP
     description = 'Runs the integration tests.' 
@@ -73,3 +75,4 @@ task integTest(type: Test) {
 }
 
 check.dependsOn integTest 
+*/
