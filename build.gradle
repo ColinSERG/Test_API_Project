@@ -80,7 +80,7 @@ check.dependsOn integtest
 
 findbugs {
   ignoreFailures = true
-  toolVersion = "2.0.1"
+  toolVersion = "3.0.1"
   sourceSets = [sourceSets.main]
   reportsDir = file("$project.buildDir/reports/findbugs")
   effort = "max"
